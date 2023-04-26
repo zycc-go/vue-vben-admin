@@ -6,4 +6,4 @@ export * from './useRefs';
 export * from './useScrollTo';
 export * from './useWindowSizeFn';
 export * from '@vueuse/core';
-export { useNProgress } from '@vueuse/integrations/useNProgress';
+// export { useNProgress } from '@vueuse/integrations/useNProgress';

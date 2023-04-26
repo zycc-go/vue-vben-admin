@@ -9,7 +9,7 @@ function is(value: unknown, type: string) {
 }
 
 function isObject(value: unknown): value is object {
-  return value !== null && is(value, 'Object');
+  return value != null && is(value, 'Object');
 }
 
 function isUndefined(value: unknown): value is undefined {
@@ -17,7 +17,7 @@ function isUndefined(value: unknown): value is undefined {
 }
 
 function isEmpty<T = unknown>(value: T): value is T {
-  if (value === null || value === undefined) {
+  if (value == null || value === undefined) {
     return true;
   }
 
@@ -52,7 +52,7 @@ function isMap(value: unknown): value is Map<any, any> {
 }
 
 function isWindow(value: any): value is Window {
-  return typeof window !== 'undefined' && value !== null && value === value.window;
+  return typeof window !== 'undefined' && value != null && value === value.window;
 }
 
 export {

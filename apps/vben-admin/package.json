@@ -23,12 +23,19 @@
     "type:check": "vue-tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "@vben/design": "workspace:*",
+    "@vben/hooks": "workspace:*",
     "@vben/layout": "workspace:*",
     "@vben/shared": "workspace:*",
     "@vben/store": "workspace:*",
     "@vben/ui": "workspace:*",
     "ant-design-vue": "^4.0.0-alpha.6",
+    "pinia": "2.0.35",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@iconify/iconify": "^3.1.0",
+    "@purge-icons/generated": "^0.9.0"
   }
 }

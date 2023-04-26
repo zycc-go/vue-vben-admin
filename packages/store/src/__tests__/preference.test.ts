@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, test } from 'vitest';
 import { createPinia, setActivePinia } from 'pinia';
+import { beforeEach, describe, expect, test } from 'vitest';
+
 import { usePreferenceStore } from '../modules/preference';
 
 describe('usePreferenceStore', () => {

@@ -1,3 +1,5 @@
+/** uno.css 样式表,需要插件配合 */
+import 'uno.css';
 import '@vben/design';
 
 import { useStore } from '@vben/store';

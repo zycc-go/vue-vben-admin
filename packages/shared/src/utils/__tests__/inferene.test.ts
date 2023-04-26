@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { isEmpty, isUndefined, isHttpUrl, isMap, isWindow, isObject } from '../inference';
+import { isEmpty, isHttpUrl, isMap, isObject, isUndefined, isWindow } from '../inference';
 
 describe('isHttpUrl', () => {
   test("should return true when given 'http://example.com'", () => {

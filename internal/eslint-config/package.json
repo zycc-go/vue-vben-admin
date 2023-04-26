@@ -17,11 +17,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    },
-    "./strict": {
-      "types": "./dist/strict.d.ts",
-      "import": "./dist/strict.mjs",
-      "require": "./dist/strict.cjs"
     }
   },
   "main": "./dist/index.cjs",

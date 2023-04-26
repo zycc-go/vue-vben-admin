@@ -1,5 +1,3 @@
-/** uno.css 样式表,需要插件配合 */
-import 'uno.css';
 /** css 样式重置 */
 import 'modern-normalize';
 /** 全局生效 */

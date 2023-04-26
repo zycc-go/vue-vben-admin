@@ -5,7 +5,7 @@
       "path": "apps/test-server"
     },
     {
-      "name": "@vben/app-vben-admin",
+      "name": "@vben/vben-admin",
       "path": "apps/vben-admin"
     },
     {
@@ -29,6 +29,10 @@
       "path": "internal/vite-config"
     },
     {
+      "name": "@vben/apis",
+      "path": "packages/apis"
+    },
+    {
       "name": "@vben/assets",
       "path": "packages/assets"
     },
@@ -45,12 +49,24 @@
       "path": "packages/icons"
     },
     {
+      "name": "@vben/layout",
+      "path": "packages/layout"
+    },
+    {
       "name": "@vben/shared",
       "path": "packages/shared"
     },
     {
+      "name": "@vben/store",
+      "path": "packages/store"
+    },
+    {
       "name": "@vben/types",
       "path": "packages/types"
+    },
+    {
+      "name": "@vben/ui",
+      "path": "packages/ui"
     },
     {
       "name": "root",
