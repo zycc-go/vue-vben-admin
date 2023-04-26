@@ -5,6 +5,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
+    "noImplicitThis": true,
     "strict": true,
     "noImplicitOverride": true,
     "noUnusedLocals": true,

@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const scopes = fs
-  .readdirSync(path.resolve(__dirname, 'src'), { withFileTypes: true })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => dirent.name.replace(/s$/, ''));
+// const scopes = fs
+//   .readdirSync(path.resolve(__dirname, 'src'), { withFileTypes: true })
+//   .filter((dirent) => dirent.isDirectory())
+//   .map((dirent) => dirent.name.replace(/s$/, ''));
 
 // precomputed scope
 const scopeComplete = execSync('git status --porcelain || true')
@@ -61,7 +61,7 @@ module.exports = {
     },
     customScopesAlign: !scopeComplete ? 'top' : 'bottom',
     defaultScope: scopeComplete,
-    scopes: [...scopes, 'mock'],
+    // scopes: [...scopes, 'mock'],
     allowEmptyIssuePrefixs: false,
     allowCustomIssuePrefixs: false,
 
