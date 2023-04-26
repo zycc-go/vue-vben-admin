@@ -5,9 +5,9 @@ import { readPackageJSON } from 'pkg-types';
 import { presetTypography, presetUno } from 'unocss';
 import UnoCSS from 'unocss/vite';
 import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite';
+import { warmup } from 'vite-plugin-warmup';
 
 import { createPlugins } from '../plugins';
-import { generateModifyVars } from '../utils/modifyVars';
 import { commonConfig } from './common';
 
 interface DefineOptions {
@@ -76,16 +76,11 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
           },
         },
       },
-      css: {
-        preprocessorOptions: {
-          less: {
-            modifyVars: generateModifyVars(),
-            javascriptEnabled: true,
-          },
-        },
-      },
       plugins: [
         ...plugins,
+        warmup({
+          clientFiles: ['./*.html'],
+        }),
         UnoCSS({
           exclude: ['node_modules'],
           include: ['**.ts', '**.tsx', '**.vue'],

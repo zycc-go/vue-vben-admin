@@ -11,9 +11,9 @@
     "directory": "packages/types"
   },
   "license": "MIT",
+  "type": "module",
   "exports": {
     ".": {
-      "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.mjs"
     }
@@ -27,10 +27,11 @@
   "scripts": {
     "build": "pnpm unbuild",
     "clean": "pnpm rimraf .turbo node_modules dist",
-    "lint": "pnpm eslint ."
+    "lint": "pnpm eslint .",
+    "stub": "pnpm unbuild --stub"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.3.0-beta.2"
   },
   "publishConfig": {
     "exports": {

@@ -3,10 +3,7 @@
   import type { CSSProperties } from 'vue';
   import { computed, watchEffect } from 'vue';
 
-  import LayoutContent from './LayoutContent.vue';
-  import LayoutFooter from './LayoutFooter.vue';
-  import LayoutHeader from './LayoutHeader.vue';
-  import LayoutSide from './LayoutSide.vue';
+  import { LayoutContent, LayoutFooter, LayoutHeader, LayoutSide } from './components';
 
   defineOptions({
     name: 'VbenLayout',
@@ -205,7 +202,7 @@
     if (sideCollapseState.value) {
       width = isMobile ? 0 : sideCollapseWidth;
     } else {
-      if (layout === 'side-mixed-nav') {
+      if (layout === 'side-mixed-nav' && !isMobile) {
         width = sideMixedWidth;
       } else {
         width = sideWidth;
@@ -268,14 +265,14 @@
       v-if="getSideVisible"
       :show="!fullContent"
       :width="getSiderWidth"
-      :sideExtraWidth="sideWidth"
-      :mixedExtraVisible="mixedExtraVisible"
-      :zIndex="sideZIndex"
-      :domVisible="!isMobile"
-      :isSideMixed="isSideMixed"
-      :paddingTop="sidePaddingTop"
-      :fixedMixedExtra="fixedMixedExtra"
-      :backgroundColor="sideBackgroundColor"
+      :side-extra-width="sideWidth"
+      :mixed-extra-visible="mixedExtraVisible"
+      :z-index="sideZIndex"
+      :dom-visible="!isMobile"
+      :is-side-mixed="isSideMixed"
+      :padding-top="sidePaddingTop"
+      :fixed-mixed-extra="fixedMixedExtra"
+      :background-color="sideBackgroundColor"
       @extra-visible="handleExtraVisible"
     >
       <slot name="side"></slot>
@@ -288,21 +285,21 @@
       <LayoutHeader
         v-if="headerVisible"
         :show="!fullContent"
-        :zIndex="zIndex"
+        :z-index="zIndex"
         :height="headerHeight"
         :fixed="headerFixed"
-        :fullWidth="!isSideMode"
-        :backgroundColor="headerBackgroundColor"
+        :full-width="!isSideMode"
+        :background-color="headerBackgroundColor"
       >
         <slot name="header"></slot>
       </LayoutHeader>
 
       <LayoutContent
         :padding="contentPadding"
-        :paddingTop="contentPaddingTop"
-        :paddingRight="contentPaddingRight"
-        :paddingBottom="contentPaddingBottom"
-        :paddingLeft="contentPaddingLeft"
+        :padding-top="contentPaddingTop"
+        :padding-right="contentPaddingRight"
+        :padding-bottom="contentPaddingBottom"
+        :padding-left="contentPaddingLeft"
       >
         <slot name="content"></slot>
       </LayoutContent>
@@ -313,7 +310,7 @@
         :zIndex="zIndex"
         :height="footerHeight"
         :fixed="footerFixed"
-        :backgroundColor="footerBackgroundColor"
+        :background-color="footerBackgroundColor"
       >
         <slot name="footer"></slot>
       </LayoutFooter>

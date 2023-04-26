@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "exports": {
     ".": {
       "development": "./src/index.ts",
@@ -37,7 +38,7 @@
     "@vben/shared": "workspace:*"
   },
   "devDependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.3.0-beta.2"
   },
   "peerDependencies": {
     "vue": "^3.2.47"

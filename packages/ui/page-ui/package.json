@@ -1,5 +1,5 @@
 {
-  "name": "@vben/store",
+  "name": "@vben/page-ui",
   "version": "1.0.0",
   "homepage": "https://github.com/vbenjs/vue-vben-admin",
   "bugs": {
@@ -8,10 +8,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "packages/store"
+    "directory": "packages/ui/page-ui"
   },
   "license": "MIT",
-  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
@@ -27,17 +26,18 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm unbuild",
+    "build": "pnpm vite build",
     "clean": "pnpm rimraf .turbo node_modules dist",
     "lint": "pnpm eslint ."
   },
   "dependencies": {
-    "pinia": "2.0.35",
-    "pinia-plugin-persistedstate": "^3.1.0",
-    "vue": "^3.3.0-beta.2"
-  },
-  "peerDependencies": {
-    "pinia": "2.0.35"
+    "@vben/assets": "workspace:*",
+    "@vben/hooks": "workspace:*",
+    "@vben/shared": "workspace:*",
+    "@vben/types": "workspace:*",
+    "ant-design-vue": "^4.0.0-alpha.6",
+    "vue": "^3.3.0-beta.2",
+    "vue-router": "^4.1.6"
   },
   "publishConfig": {
     "exports": {

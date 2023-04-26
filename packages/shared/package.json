@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "exports": {
     ".": {
       "development": "./src/index.ts",
@@ -31,10 +32,10 @@
     "lint": "pnpm eslint ."
   },
   "dependencies": {
-    "@vue/shared": "^3.2.47",
+    "@vue/shared": "^3.3.0-beta.2",
     "dayjs": "^1.11.7",
     "lodash-es": "^4.17.21",
-    "vue": "^3.2.47"
+    "vue": "^3.3.0-beta.2"
   },
   "publishConfig": {
     "exports": {

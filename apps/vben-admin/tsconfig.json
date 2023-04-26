@@ -3,7 +3,6 @@
   "extends": "@vben/ts-config/web.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["vite/client", "unplugin-vue-define-options/macros-global"],
     "paths": {
       "@/*": ["src/*"]
     }

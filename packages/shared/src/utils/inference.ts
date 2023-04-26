@@ -1,16 +1,6 @@
 // eslint-disable-next-line vue/prefer-import-from-vue
-import { isArray, isFunction, isString } from '@vue/shared';
+import { isArray, isFunction, isObject, isString } from '@vue/shared';
 import { isBoolean, isNil, isNull, isNumber } from 'lodash-es';
-
-const toString = Object.prototype.toString;
-
-function is(value: unknown, type: string) {
-  return toString.call(value) === `[object ${type}]`;
-}
-
-function isObject(value: unknown): value is object {
-  return value != null && is(value, 'Object');
-}
 
 function isUndefined(value: unknown): value is undefined {
   return typeof value === 'undefined';
@@ -47,22 +37,16 @@ function isHttpUrl(url: string) {
   return httpRegex.test(url);
 }
 
-function isMap(value: unknown): value is Map<any, any> {
-  return is(value, 'Map') || value instanceof Map;
-}
-
 function isWindow(value: any): value is Window {
   return typeof window !== 'undefined' && value != null && value === value.window;
 }
 
 export {
-  is,
   isArray,
   isBoolean,
   isEmpty,
   isFunction,
   isHttpUrl,
-  isMap,
   isNil,
   isNull,
   isNumber,

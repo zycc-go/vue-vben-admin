@@ -5,9 +5,7 @@
   import type { Rule } from 'ant-design-vue/es/form';
   import { reactive } from 'vue';
 
-  defineOptions({
-    name: 'LoginForm',
-  });
+  defineOptions({ name: 'LoginForm' });
 
   // interface Props {
   //   /**

@@ -1,5 +1,5 @@
 {
-  "typescript.tsdk": "./node_modules/typescript/lib",
+  // "typescript.tsdk": "./node_modules/typescript/lib",
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.eol": "\n",
@@ -36,6 +36,7 @@
     "**/.editorconfig": true,
     "**/.eslintcache": true,
     "**/bower_components": true,
+    "**/.turbo": true,
     "**/.idea": true,
     "**/tmp": true,
     "**/.git": true,
@@ -141,7 +142,7 @@
     "CHANGELOG.md": "CHANGELOG*",
     "README.md": "README*",
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,.npmrc,.browserslistrc,.nvmrc",
-    ".eslintrc.js": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.js,.prettierrc.js,.stylelintrc.js,.lintstagedrc"
+    ".eslintrc.cjs": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*,.lintstagedrc"
   },
   "terminal.integrated.scrollback": 10000
 }

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { isEmpty, isHttpUrl, isMap, isObject, isUndefined, isWindow } from '../inference';
+import { isEmpty, isHttpUrl, isObject, isUndefined, isWindow } from '../inference';
 
 describe('isHttpUrl', () => {
   test("should return true when given 'http://example.com'", () => {
@@ -74,20 +74,6 @@ describe('isEmpty', () => {
   test('should return false for number or boolean', () => {
     expect(isEmpty(0)).toBe(false);
     expect(isEmpty(true)).toBe(false);
-  });
-});
-
-describe('isMap', () => {
-  test('should return true for Map objects', () => {
-    expect(isMap(new Map())).toBe(true);
-  });
-
-  test('should return false for objects that are not a Map', () => {
-    expect(isMap([])).toBe(false);
-    expect(isMap({})).toBe(false);
-    expect(isMap('')).toBe(false);
-    expect(isMap(123)).toBe(false);
-    expect(isMap(null)).toBe(false);
   });
 });
 

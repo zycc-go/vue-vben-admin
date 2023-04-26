@@ -11,6 +11,7 @@
     "directory": "packages/hooks"
   },
   "license": "MIT",
+  "type": "module",
   "exports": {
     ".": {
       "default": "./src/index.ts"

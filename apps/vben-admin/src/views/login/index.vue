@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-  import { Login } from '@vben/ui';
+  import { Login } from '@vben/page-ui';
 
   import LoginForm from './LoginForm.vue';
 
-  defineOptions({
-    name: 'Login',
-  });
+  defineOptions({ name: 'Login' });
 </script>
 
 <template>

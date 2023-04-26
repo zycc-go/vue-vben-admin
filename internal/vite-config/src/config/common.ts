@@ -1,7 +1,5 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-// @ts-ignore: type unless
-import DefineOptions from 'unplugin-vue-define-options/vite';
 import { type UserConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
@@ -21,7 +19,7 @@ const commonConfig: UserConfig = {
       },
     },
   },
-  plugins: [vue(), vueJsx(), DefineOptions(), cssInjectedByJsPlugin()],
+  plugins: [vue(), vueJsx(), cssInjectedByJsPlugin()],
 };
 
 export { commonConfig };

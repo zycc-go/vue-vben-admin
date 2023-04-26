@@ -1,6 +1,15 @@
 {
   "name": "vben-admin",
   "version": "3.0.0-alpha.2",
+  "keywords": [
+    "vben admin",
+    "vben",
+    "vue",
+    "vue3",
+    "vue admin",
+    "monorepo",
+    "turbo"
+  ],
   "homepage": "https://github.com/vbenjs/vue-vben-admin",
   "bugs": {
     "url": "https://github.com/vbenjs/vue-vben-admin/issues"
@@ -15,6 +24,7 @@
     "email": "anncwb@126.com",
     "url": "https://github.com/anncwb"
   },
+  "type": "module",
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo build",

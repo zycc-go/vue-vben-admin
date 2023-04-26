@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "exports": {
     ".": {
       "development": "./src/index.ts",
@@ -34,7 +35,7 @@
     "@vben/types": "workspace:*",
     "@vueuse/core": "^10.1.0",
     "@vueuse/integrations": "^10.1.0",
-    "vue": "^3.2.47"
+    "vue": "^3.3.0-beta.2"
   },
   "publishConfig": {
     "exports": {

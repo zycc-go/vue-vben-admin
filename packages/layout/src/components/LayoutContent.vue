@@ -53,7 +53,7 @@
 </script>
 
 <template>
-  <main :style="style" class="vben-admin-layout-content">
+  <main :style="style">
     <slot></slot>
   </main>
 </template>

@@ -6,7 +6,7 @@ interface UseWindowSizeFnOptions {
    * @description 节流时间
    * @default 150
    */
-  wait?: number;
+  debounceTime?: number;
   /**
    * @description 立即执行
    * @default false
@@ -20,13 +20,13 @@ interface UseWindowSizeFnOptions {
 }
 
 function useWindowSizeFn(fn: AnyFunction, options: UseWindowSizeFnOptions = {}) {
-  const { wait = 150, immediate } = options;
+  const { debounceTime = 150, immediate } = options;
 
   let handler = () => {
     fn();
   };
 
-  handler = useDebounceFn(handler, wait);
+  handler = useDebounceFn(handler, debounceTime);
 
   const start = () => {
     if (immediate) {

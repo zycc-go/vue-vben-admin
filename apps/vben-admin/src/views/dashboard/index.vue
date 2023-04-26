@@ -3,14 +3,12 @@
   import { Checkbox, InputNumber, Radio, RadioGroup } from 'ant-design-vue';
   import { reactive } from 'vue';
 
-  defineOptions({
-    name: 'Dashboard',
-  });
+  defineOptions({ name: 'Dashboard' });
 
   const model = reactive({
     sideWidth: 200,
     siderCollapse: false,
-    layout: 'side-nav',
+    layout: 'side-nav' as const,
     sideMixedExtraVisible: false,
     fixedMixedExtra: false,
     isMobile: false,
@@ -19,12 +17,12 @@
 
 <template>
   <VbenAdminLayout
-    :sideWidth="model.sideWidth"
-    :layout="model.layout"
-    :fixedMixedExtra="model.fixedMixedExtra"
-    :isMobile="model.isMobile"
     v-model:side-collapse="model.siderCollapse"
     v-model:mixed-extra-visible="model.sideMixedExtraVisible"
+    :sideWidth="model.sideWidth"
+    :layout="model.layout"
+    :fixed-mixed-extra="model.fixedMixedExtra"
+    :isMobile="model.isMobile"
   >
     <template #side>
       <div>side</div>

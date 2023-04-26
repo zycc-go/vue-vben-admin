@@ -16,6 +16,7 @@
     "email": "anncwb@126.com",
     "url": "https://github.com/anncwb"
   },
+  "type": "module",
   "scripts": {
     "build": "cross-env NODE_ENV=production pnpm vite build",
     "dev": "pnpm vite",
@@ -26,12 +27,13 @@
     "@vben/design": "workspace:*",
     "@vben/hooks": "workspace:*",
     "@vben/layout": "workspace:*",
+    "@vben/page-ui": "workspace:*",
     "@vben/shared": "workspace:*",
     "@vben/store": "workspace:*",
-    "@vben/ui": "workspace:*",
+    "@vben/types": "workspace:*",
     "ant-design-vue": "^4.0.0-alpha.6",
     "pinia": "2.0.35",
-    "vue": "^3.2.47",
+    "vue": "^3.3.0-beta.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
