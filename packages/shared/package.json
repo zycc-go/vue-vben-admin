@@ -29,13 +29,14 @@
   "scripts": {
     "build": "pnpm unbuild",
     "clean": "pnpm rimraf .turbo node_modules dist",
-    "lint": "pnpm eslint ."
+    "lint": "pnpm eslint .",
+    "stub": "pnpm unbuild --stub"
   },
   "dependencies": {
-    "@vue/shared": "^3.3.0-beta.2",
+    "@vue/shared": "^3.3.0-beta.5",
     "dayjs": "^1.11.7",
     "lodash-es": "^4.17.21",
-    "vue": "^3.3.0-beta.2"
+    "vue": "^3.3.0-beta.5"
   },
   "publishConfig": {
     "exports": {

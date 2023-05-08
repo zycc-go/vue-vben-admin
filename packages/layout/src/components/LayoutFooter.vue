@@ -39,7 +39,7 @@
     fixed: true,
   });
 
-  const { b } = useNamespace('layout-footer');
+  const { b } = useNamespace('footer');
 
   const style = computed((): CSSProperties => {
     const { backgroundColor, height, fixed, zIndex, show } = props;
@@ -60,7 +60,7 @@
 </template>
 
 <style scoped module lang="scss">
-  @include b('layout-footer') {
+  @include b('footer') {
     bottom: 0;
     width: 100%;
     transition: all 0.3s;

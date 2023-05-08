@@ -3,7 +3,7 @@
   import type { CSSProperties } from 'vue';
   import { computed, watchEffect } from 'vue';
 
-  import { LayoutContent, LayoutFooter, LayoutHeader, LayoutSide } from './components';
+  import { LayoutContent, LayoutFooter, LayoutHeader, LayoutSide, LayoutTab } from './components';
 
   defineOptions({
     name: 'VbenLayout',
@@ -37,7 +37,7 @@
     headerVisible?: boolean;
     /**
      * header高度
-     * @default 60
+     * @default 48
      */
     headerHeight?: number;
     /**
@@ -126,6 +126,21 @@
      */
     footerBackgroundColor?: string;
     /**
+     * tab是否可见
+     * @default true
+     */
+    tabVisible?: boolean;
+    /**
+     * tab高度
+     * @default 30
+     */
+    tabHeight?: number;
+    /**
+     * footer背景颜色
+     * @default #fff
+     */
+    tabBackgroundColor?: string;
+    /**
      * 混合侧边扩展区域是否可见
      * @default false
      */
@@ -142,24 +157,27 @@
     zIndex: 1000,
     isMobile: false,
     headerVisible: true,
-    headerHeight: 60,
+    headerHeight: 48,
     headerFixed: true,
-    headerBackgroundColor: 'red',
+    headerBackgroundColor: '#fff',
     sideVisible: true,
     sideWidth: 180,
     sideMixedWidth: 80,
     sideCollapse: false,
     sideCollapseWidth: 48,
-    sideBackgroundColor: 'green',
+    sideBackgroundColor: '#fff',
     contentPadding: 16,
     contentPaddingBottom: 16,
     contentPaddingTop: 16,
     contentPaddingLeft: 16,
     contentPaddingRight: 16,
-    footerBackgroundColor: 'yellow',
+    footerBackgroundColor: '#fff',
     footerHeight: 32,
     footerFixed: true,
-    footerVisible: true,
+    footerVisible: false,
+    tabVisible: true,
+    tabHeight: 30,
+    tabBackgroundColor: '#fff',
     mixedExtraVisible: false,
     fixedMixedExtra: false,
   });
@@ -232,6 +250,16 @@
   const maskVisible = computed(() => !sideCollapseState.value && props.isMobile);
 
   /**
+   * header fixed值
+   */
+  const getHeaderFixed = computed(() => (props.layout === 'mixed-nav' ? true : props.headerFixed));
+
+  /**
+   * tab top 值
+   */
+  const tabTop = computed(() => (fullContent.value ? 0 : props.headerHeight));
+
+  /**
    * 侧边栏z-index
    */
   const sideZIndex = computed(() => {
@@ -261,6 +289,7 @@
 
 <template>
   <div :class="b()">
+    <slot></slot>
     <LayoutSide
       v-if="getSideVisible"
       :show="!fullContent"
@@ -287,12 +316,23 @@
         :show="!fullContent"
         :z-index="zIndex"
         :height="headerHeight"
-        :fixed="headerFixed"
+        :fixed="getHeaderFixed"
         :full-width="!isSideMode"
         :background-color="headerBackgroundColor"
       >
         <slot name="header"></slot>
       </LayoutHeader>
+
+      <LayoutTab
+        v-if="tabVisible"
+        :background-color="tabBackgroundColor"
+        :top="tabTop"
+        :z-index="zIndex"
+        :height="tabHeight"
+        :fixed="getHeaderFixed"
+      >
+        <slot name="tab"></slot>
+      </LayoutTab>
 
       <LayoutContent
         :padding="contentPadding"
@@ -315,7 +355,6 @@
         <slot name="footer"></slot>
       </LayoutFooter>
     </div>
-
     <div v-if="maskVisible" :class="e('mask')" :style="maskStyle" @click="handleClickMask"></div>
   </div>
 </template>

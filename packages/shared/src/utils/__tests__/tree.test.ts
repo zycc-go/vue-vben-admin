@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
 
-import { traverseTree } from '../tree';
+import { filterTree, mapTree, traverseTreeValues } from '../tree';
 
-describe('traverseTree', () => {
+describe('traverseTreeValues', () => {
   interface Node {
     name: string;
     children?: Node[];
@@ -34,40 +34,143 @@ describe('traverseTree', () => {
   ];
 
   test('traverses tree and returns all node values', () => {
-    const values = traverseTree<Node, NodeValue>(
-      sampleTree,
-      (node) => node.children,
-      (node) => node.name,
-    );
+    const values = traverseTreeValues<Node, NodeValue>(sampleTree, (node) => node.name, {
+      childProps: 'children',
+    });
     expect(values).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
   });
 
   test('handles empty tree', () => {
-    const values = traverseTree<Node, NodeValue>(
-      [],
-      (node) => node.children,
-      (node) => node.name,
-    );
+    const values = traverseTreeValues<Node, NodeValue>([], (node) => node.name);
     expect(values).toEqual([]);
   });
 
   test('handles tree with only root node', () => {
     const rootNode = { name: 'A' };
-    const values = traverseTree<Node, NodeValue>(
-      [rootNode],
-      (node) => node.children,
-      (node) => node.name,
-    );
+    const values = traverseTreeValues<Node, NodeValue>([rootNode], (node) => node.name);
     expect(values).toEqual(['A']);
   });
 
   test('handles tree with only leaf nodes', () => {
     const leafNodes = [{ name: 'A' }, { name: 'B' }, { name: 'C' }];
-    const values = traverseTree<Node, NodeValue>(
-      leafNodes,
-      (_) => undefined,
-      (node) => node.name,
-    );
+    const values = traverseTreeValues<Node, NodeValue>(leafNodes, (node) => node.name);
     expect(values).toEqual(['A', 'B', 'C']);
+  });
+});
+
+describe('filterTree', () => {
+  const tree = [
+    {
+      id: 1,
+      children: [{ id: 2 }, { id: 3, children: [{ id: 4 }, { id: 5 }, { id: 6 }] }, { id: 7 }],
+    },
+    { id: 8, children: [{ id: 9 }, { id: 10 }] },
+    { id: 11 },
+  ];
+
+  test('should return all nodes when condition is always true', () => {
+    const result = filterTree(tree, () => true, { childProps: 'children' });
+    expect(result).toEqual(tree);
+  });
+
+  test('should return only root nodes when condition is always false', () => {
+    const result = filterTree(tree, () => false);
+    expect(result).toEqual([]);
+  });
+
+  test('should return nodes with even id values', () => {
+    const result = filterTree(tree, (node) => node.id % 2 === 0);
+    expect(result).toEqual([{ id: 8, children: [{ id: 10 }] }]);
+  });
+
+  test('should return nodes with odd id values and their ancestors', () => {
+    const result = filterTree(tree, (node) => node.id % 2 === 1);
+    expect(result).toEqual([
+      {
+        id: 1,
+        children: [{ id: 3, children: [{ id: 5 }] }, { id: 7 }],
+      },
+      { id: 11 },
+    ]);
+  });
+
+  test('should return nodes with "leaf" in their name', () => {
+    const tree = [
+      {
+        name: 'root',
+        children: [
+          { name: 'leaf 1' },
+          { name: 'branch', children: [{ name: 'leaf 2' }, { name: 'leaf 3' }] },
+          { name: 'leaf 4' },
+        ],
+      },
+    ];
+    const result = filterTree(tree, (node) => node.name.includes('leaf') || node.name === 'root');
+    expect(result).toEqual([
+      {
+        name: 'root',
+        children: [{ name: 'leaf 1' }, { name: 'leaf 4' }],
+      },
+    ]);
+  });
+});
+
+describe('mapTree', () => {
+  test('Map infinite depth tree using mapTree', () => {
+    const tree = [
+      {
+        id: 1,
+        name: 'node1',
+        children: [
+          { id: 2, name: 'node2' },
+          { id: 3, name: 'node3' },
+          {
+            id: 4,
+            name: 'node4',
+            children: [
+              {
+                id: 5,
+                name: 'node5',
+                children: [
+                  { id: 6, name: 'node6' },
+                  { id: 7, name: 'node7' },
+                ],
+              },
+              { id: 8, name: 'node8' },
+            ],
+          },
+        ],
+      },
+    ];
+    const newTree = mapTree(tree, (node) => ({
+      ...node,
+      name: node.name + '-new',
+    }));
+
+    expect(newTree).toEqual([
+      {
+        id: 1,
+        name: 'node1-new',
+        children: [
+          { id: 2, name: 'node2-new' },
+          { id: 3, name: 'node3-new' },
+          {
+            id: 4,
+            name: 'node4-new',
+            children: [
+              {
+                id: 5,
+                name: 'node5-new',
+                children: [
+                  { id: 6, name: 'node6-new' },
+                  { id: 7, name: 'node7-new' },
+                ],
+              },
+              { id: 8, name: 'node8-new' },
+            ],
+          },
+        ],
+      },
+    ]);
   });
 });

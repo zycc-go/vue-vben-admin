@@ -101,10 +101,8 @@ describe('isObject', () => {
     expect(isObject(42)).toBe(false);
     expect(isObject('string')).toBe(false);
     expect(isObject(true)).toBe(false);
-    expect(isObject([1, 2, 3])).toBe(false);
-    // TODO: isDate
-    expect(isObject(new Date())).toBe(false);
-    // TODO: isRegexp
-    expect(isObject(/regex/)).toBe(false);
+    expect(isObject([1, 2, 3])).toBe(true);
+    expect(isObject(new Date())).toBe(true);
+    expect(isObject(/regex/)).toBe(true);
   });
 });

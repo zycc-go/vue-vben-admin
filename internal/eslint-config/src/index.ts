@@ -74,6 +74,7 @@ export default defineConfig({
     'import/no-duplicates': 'error',
     'import/no-unresolved': 'off',
 
+    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',

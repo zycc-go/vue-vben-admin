@@ -19,7 +19,8 @@
     "node-server.json"
   ],
   "dependencies": {
-    "@types/node": "^18.16.1",
-    "vite": "^4.3.3"
+    "@types/node": "^18.16.5",
+    "@vben/types": "workspace:*",
+    "vite": "^4.3.5"
   }
 }

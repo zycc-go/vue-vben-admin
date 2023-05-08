@@ -29,13 +29,15 @@
   "scripts": {
     "build": "pnpm unbuild",
     "clean": "pnpm rimraf .turbo node_modules dist",
-    "lint": "pnpm eslint ."
+    "lint": "pnpm eslint .",
+    "stub": "pnpm unbuild --stub"
   },
   "dependencies": {
     "@vben/types": "workspace:*",
-    "@vueuse/core": "^10.1.0",
-    "@vueuse/integrations": "^10.1.0",
-    "vue": "^3.3.0-beta.2"
+    "@vueuse/core": "^10.1.2",
+    "@vueuse/integrations": "^10.1.2",
+    "vue": "^3.3.0-beta.5",
+    "vue-hooks-plus": "^1.6.5"
   },
   "publishConfig": {
     "exports": {

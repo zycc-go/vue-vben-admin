@@ -1,24 +1,20 @@
 <script setup lang="ts">
-  import { useAsyncState } from '@vben/hooks';
-  import type { LoginFormState } from '@vben/types';
+  import { useRequest } from '@vben/hooks';
+  import { useUserStore } from '@vben/store';
   import { Button, Checkbox, Form, Input } from 'ant-design-vue';
   import type { Rule } from 'ant-design-vue/es/form';
   import { reactive } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  import { getUserInfo, userLogin, type UserService } from '@/services';
 
   defineOptions({ name: 'LoginForm' });
 
-  // interface Props {
-  //   /**
-  //    * @description 登录函数
-  //    */
-  //   loginFunc: (form: LoginFormState) => Promise<void>;
-  // }
+  const useForm = Form.useForm;
 
-  // const props = withDefaults(defineProps<Props>(), {});
-
-  const formModel = reactive<LoginFormState>({
-    username: '',
-    password: '',
+  const formModel = reactive<UserService.LoginParams & { rememberMe: boolean }>({
+    username: 'vben',
+    password: '123456',
     rememberMe: false,
   });
 
@@ -37,18 +33,19 @@
     ],
   });
 
-  const useForm = Form.useForm;
-
+  const router = useRouter();
+  const userStore = useUserStore();
   const { validate, validateInfos } = useForm(formModel, formRules);
 
-  const { isLoading, execute } = useAsyncState(
-    async () => {
-      // TODO: login
-    },
-    null,
-    { immediate: false },
-  );
+  const { loading, runAsync } = useRequest(userLogin, { manual: true });
+  const { loading: userInfoLoading, runAsync: runUserInfoAsync } = useRequest(getUserInfo, {
+    manual: true,
+  });
 
+  /**
+   * 登录逻辑
+   * @param e
+   */
   async function handleLogin(e: MouseEvent) {
     e?.preventDefault();
 
@@ -56,12 +53,18 @@
     if (!values) {
       return;
     }
-    await execute();
+    const { accessToken } = await runAsync(values);
+    if (accessToken) {
+      userStore.setAccessToken(accessToken);
+      const userInfo = await runUserInfoAsync();
+      userStore.setUserInfo(userInfo);
+      router.push(userInfo.homePath);
+    }
   }
 </script>
 
 <template>
-  <Form class="enter-x">
+  <Form class="enter-x w-1/2">
     <Form.Item v-bind="validateInfos.username" class="enter-x">
       <Input v-model:value="formModel.username" size="large" placeholder="用户名" />
     </Form.Item>
@@ -77,7 +80,13 @@
       </Form.Item>
     </div>
     <Form.Item class="enter-x">
-      <Button type="primary" size="large" :loading="isLoading" block @click="handleLogin">
+      <Button
+        type="primary"
+        size="large"
+        :loading="loading || userInfoLoading"
+        block
+        @click="handleLogin"
+      >
         登录
       </Button>
     </Form.Item>

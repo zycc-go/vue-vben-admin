@@ -1,7 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { type UserConfig } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 const commonConfig: UserConfig = {
   server: {
@@ -19,7 +18,7 @@ const commonConfig: UserConfig = {
       },
     },
   },
-  plugins: [vue(), vueJsx(), cssInjectedByJsPlugin()],
+  plugins: [vue(), vueJsx()],
 };
 
 export { commonConfig };

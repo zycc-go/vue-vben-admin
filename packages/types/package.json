@@ -16,6 +16,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.mjs"
+    },
+    "./global": {
+      "types": "./dist/global.ts",
+      "default": "./dist/global.mjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -31,7 +35,10 @@
     "stub": "pnpm unbuild --stub"
   },
   "dependencies": {
-    "vue": "^3.3.0-beta.2"
+    "vue": "^3.3.0-beta.5"
+  },
+  "devDependencies": {
+    "vue-router": "^4.1.6"
   },
   "publishConfig": {
     "exports": {

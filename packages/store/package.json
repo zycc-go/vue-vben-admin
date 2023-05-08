@@ -29,12 +29,14 @@
   "scripts": {
     "build": "pnpm unbuild",
     "clean": "pnpm rimraf .turbo node_modules dist",
-    "lint": "pnpm eslint ."
+    "lint": "pnpm eslint .",
+    "stub": "pnpm unbuild --stub"
   },
   "dependencies": {
+    "@vben/types": "workspace:*",
     "pinia": "2.0.35",
     "pinia-plugin-persistedstate": "^3.1.0",
-    "vue": "^3.3.0-beta.2"
+    "vue": "^3.3.0-beta.5"
   },
   "peerDependencies": {
     "pinia": "2.0.35"

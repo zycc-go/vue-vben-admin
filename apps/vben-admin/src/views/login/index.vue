@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { Login } from '@vben/page-ui';
+  import { Login } from '@vben/share-ui';
 
   import LoginForm from './LoginForm.vue';
 
