@@ -431,7 +431,7 @@
     }
 
     .ant-table-footer {
-      padding: 0;
+      padding: 0 !important;
 
       .ant-table-wrapper {
         padding: 0;

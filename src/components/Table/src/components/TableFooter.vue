@@ -2,7 +2,7 @@
   <Table
     v-if="summaryFunc || summaryData"
     :showHeader="false"
-    :bordered="false"
+    :bordered="bordered"
     :pagination="false"
     :dataSource="getDataSource"
     :rowKey="(r) => r[rowKey]"
@@ -38,6 +38,12 @@
         type: Object as PropType<Recordable>,
       },
       rowKey: propTypes.string.def('key'),
+      bordered: {
+        type: Boolean,
+      },
+      rowWidth: {
+        type: Number,
+      },
     },
     setup(props) {
       const table = useTableContext();
@@ -78,7 +84,7 @@
         if (table.getRowSelection() && hasRowSummary) {
           const isFixed = columns.some((col) => col.fixed === 'left');
           columns.unshift({
-            width: 60,
+            width: props.rowWidth,
             title: 'selection',
             key: 'selectionKey',
             align: 'center',
@@ -92,3 +98,12 @@
     },
   });
 </script>
+<style lang="less">
+  @prefix-cls: ~'@{namespace}-basic-table';
+
+  .@{prefix-cls} {
+    .ant-table-footer {
+      border: none !important;
+    }
+  }
+</style>
